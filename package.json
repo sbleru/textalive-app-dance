@@ -4,10 +4,11 @@
   "version": "1.0.0",
   "description": "3Dモデルを使った複雑な処理を含むTextAlive App APIの作例",
   "scripts": {
-    "build-dev": "parcel src/index.html --dist-dir dev",
+    "build-dev": "npm run prebuild-dev && parcel src/index.html --dist-dir dev",
     "build": "parcel build src/index.html --public-url ./ --dist-dir docs --no-source-maps",
     "clean": "del-cli .parcel-cache dev docs",
-    "prebuild": "del-cli docs && cd src/assets && copyfiles ./**/* ../../docs"
+    "prebuild": "del-cli docs && mkdir -p docs/models && cp -r src/assets/models/* docs/models/",
+    "prebuild-dev": "mkdir -p dev/models && cp -r src/assets/models/* dev/models/"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,6 @@
     "del-cli": "^4.0.1",
     "parcel": "^2.0.0-beta.3.1",
     "typescript": "^4.4.3"
-  }
+  },
+  "packageManager": "npm@10.8.2"
 }
